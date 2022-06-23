@@ -1,0 +1,135 @@
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <style>
+            header, section {
+                padding: 1em;
+            }
+
+            img {
+                width: 100%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header class="container-lg">
+            <h1>Data-Task-Idiom critique of two data visualisations</h1>
+        </header>
+        
+        <section class="container-lg">
+            <h2>1st Visualisation: 117th Congress by Views of Climate</h2>
+
+            <h3>Introduction to visualisation:</h3>
+            <p>This data visualisation was created and published on Sub-reddit /r/visualisation to 
+            show the ratio of acceptance and objections of the climate change bill during the 117th 
+            United States Congress, which was attended by 100 senators and 435 representatives from 
+            either the Republican, Democrat or independent party candidates.</p>
+            
+            <img src="https://github.com/heyitsch/CSC3007-project/raw/dd15504f4821a584ecc095edcbcae788007d7e7a/viz1.jpg">
+
+            <p>Source - 
+            https://www.reddit.com/r/visualization/comments/qw6bjo/117th_congress_by_party_and_acceptance_of_climate/</p>
+            
+            <h3>Data (What):</h3>
+            <ul>
+                <li>Pictorial Unit Chart, with each data point representing a member of congress, 
+                and the colour code represents their party (Republican, Democrat or Independent), 
+                also other legends such as climate denier or climate caucus will be applied to the 
+                data points.</li>
+            </ul>
+            
+            <h3>Task (Why):</h3>
+            <ul>
+                <li>To present the number of members of a party which is against climate change, and 
+                the number of members working towards climate change. </li>
+                <li>To show the individual breakdown of the number of votes for/against climate 
+                change for the individual states.</li>
+            </ul>
+            
+            <h3>Idiom (How):</h3>
+            <ul>
+                <li>The contrast of the foreground colours with the background is very low and makes 
+                the readability very poor</li>
+                <li>There is no description of what a climate denier is and what makes a 
+                representative one</li>
+                <li>The legend for a climate denier is depicted as a striked out yellow circle with 
+                a stroke through the centre but the actual representation in the chart is different 
+                (Does not match with the legend in the chart)</li>
+                <li>The representatives are subdivided by their represented states but there is no 
+                clear idea on what is the purpose of doing so</li>
+            </ul>
+            
+            <h3>Suggestion on how to improve the visualisation</h3>
+            <ul>
+                <li>Use a better colour combinations for the legend</li>
+                <li>Alternatively, the data could be plot using parliament chart for a more 
+                effective overview of the voting outcomes.
+                https://it.usembassy.gov/shifts-in-the-new-u-s-congress-infographic/
+                https://www.momscleanairforce.org/climate-deniers-2/</li>
+            </ul>
+            
+            
+            <TODO: Figma diagrams> 
+        </section>
+
+        <section class="container-lg">
+            <h2>2nd Visualisation: 2021 Healthy Lifestyle Report</h2>
+
+            <h3>Introduction to visualisation:</h3>
+            <p>This visualisation was created by Jennifer Nicole Falk and published to the Tableau 
+            public website. This visualisation is a visual representation of the linked dataset of 
+            10 measures that contribute to a healthy lifestyle.</p>
+            
+            <img src="https://github.com/heyitsch/CSC3007-project/raw/dd15504f4821a584ecc095edcbcae788007d7e7a/viz2.png">
+
+            <p>Source
+            https://public.tableau.com/app/profile/drjfalk/viz/HealthyLIfestyle_2021/HealthyLifestyle_Dashboard#1
+            https://www.kaggle.com/datasets/prasertk/healthy-lifestyle-cities-report-2021</p>
+            
+            <h3>Data (What) :</h3>
+            <ul>
+                <li>Data is presented using both heat map table and a parallel coordinate line chart
+                </li>
+                <li>For the parallel coordinate line chart, it requires a lot of cognitive effort to 
+                    evaluate which country fared well for each of the metrics. </li>
+                <li>The dataset (from Kaggle) records the statistics of each metric but the author 
+                    decided to omit it and present just the ranking.</li>
+            </ul>
+
+            <h3>Task (Why):</h3>
+            <ul>
+                <li>To present the healthiness of various first-world cities across the world. The 
+                    heatmap is attempting to show which countries have higher ranks across the 7 
+                    categories chosen by the author. The parallel coordinate chart attempts varying 
+                    individual rankings within the 7 categories for the top 10 overall ranked 
+                    cities.</li>
+            </ul>
+
+            <h3>Idiom (How):</h3>
+            <ul>
+                <li>The 'Overall Rank' metric stacks all of the Top 10 countries together, the data 
+                is compressed and it feels like there is no significant difference between the 
+                rankings.</li>
+                <li>Line chart is usually used to depict a trend/pattern but in this case the 
+                trend/pattern is different for all the top 10 countries, and when it is stacked 
+                together it appears very confusing.</li>
+                <li>For the Heat Map Table, the lighter colours are supposed to show the countries 
+                that are ranked high in the report, and the darker colours are used to depict lower 
+                rank, but it is confusing.</li>
+                <li>The metrics colours blend in with each other, and leave the reader 
+                confused.</li>
+            </ul>
+
+            <h3>Suggestion on how to improve the visualisation</h3>
+            <ul>
+                <li>When you convert metrics like Sunlights to a ranking, you lose the “intensity” 
+                of the scale. Instead we could compare the metrics individually (story 
+                telling).</li>
+            </ul>    
+
+            <TODO: Figma diagrams> 
+        </section>
+
+    </body>
+</html>
