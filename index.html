@@ -1,6 +1,8 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <meta charset="UTF-8">
+     
         <style>
             header, section {
                 padding: 1em;
@@ -9,18 +11,31 @@
             img {
                 width: 100%;
             }
+
         </style>
+
+           <!--Add dependencies -->
+           <script src="https://d3js.org/d3.v7.min.js"></script>
+
+           <script src="./scripts/d3-parliament-chart.js"></script>
+           <script src="./scripts/d3-parliament-chart.min.js"></script>
+
+           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+           <script type="module" src="./app.js" defer></script>
     </head>
 
     <body>
+
         <header class="container-lg">
-            <h1>Data-Task-Idiom critique of two data visualisations</h1>
+            <h1><strong>Data-Task-Idiom critique of two data visualisations</strong></h1>
         </header>
         
         <section class="container-lg">
-            <h2>1st Visualisation: 117th Congress by Views of Climate</h2>
+            <h2><strong>1st Visualisation: 117th Congress by Views of Climate </strong></h2>
 
             <h3>Introduction to visualisation:</h3>
+
             <p>This data visualisation was created and published on Sub-reddit /r/visualisation to 
             show the ratio of acceptance and objections of the climate change bill during the 117th 
             United States Congress, which was attended by 100 senators and 435 representatives from 
@@ -41,6 +56,8 @@
                 and the colour code represents their party (Republican, Democrat or Independent), 
                 also other legends such as climate denier or climate caucus will be applied to the 
                 data points.</li>
+
+                
             </ul>
             
             <h3>Task (Why):</h3>
@@ -64,7 +81,7 @@
                 clear idea on what is the purpose of doing so</li>
             </ul>
             
-            <h3>Suggestion on how to improve the visualisation</h3>
+            <h3>Suggestion on how to improve the visualisation with D3.js examples</h3>
             <ul>
                 <li>Use a better colour combinations for the legend</li>
                 <li>Alternatively, the data could be plot using parliament chart for a more 
@@ -75,8 +92,93 @@
                 https://www.momscleanairforce.org/climate-deniers-2/</a></li>
             </ul>
             
+            <div id="parliamentChart">
+                <h5>Using a parliament diagram can show the proportion of the congress seats easily</h5>
+                
+                <svg></svg>
+            </div>
+            <script>
+                
+                let width = 1000, height = 600;
+                let data = [
+                    {seats: 40, color: 'blue'},
+                    {seats: 70, color: 'red'},
+                    {seats: 2, color: 'yellow'}
+                ]
+
+                let svg = d3.select("#parliamentChart")
+                    .selectAll('svg')   
+                    .attr("width", width)
+                    .attr("height", height)
+
+                //TODO: Add the correct seats accordingly to the congress data
+                let chart = d3.parliamentChart([], width)
+                    .aggregatedData(data)
+                
+                //TODO: Add legend for seats (republican or democrats or independent etc.)
+                svg.append('g')
+                    .attr('transform', 'translate(0, 50)')
+                    .call(chart)
+
+                svg.append("text")
+                    .attr("x", 50)
+                    .attr("y", 30)
+                    .text("117th Congress Climate Denier Caucus - Selected State: Arizona")
+                    .style("font-size", "24px")
+                    .attr("alignment-baseline","middle")
+                    
+
+                svg.append("text")
+                    .attr("x", 500)
+                    .attr("y", 400)
+                    .text("Republicants")
+                    .style("font-size", "15px")
+                    .attr("alignment-baseline","middle")
+
+                svg.append("text")
+                    .attr("x", 500)
+                    .attr("y", 450)
+                    .text("Democrats")
+                    .style("font-size", "15px")
+                    .attr("alignment-baseline","middle")
+
+                svg.append("text")
+                    .attr("x", 500)
+                    .attr("y", 500)
+                    .text("Independent")
+                    .style("font-size", "15px")
+                    .attr("alignment-baseline","middle")
+
+                svg
+                    .append("circle")
+                    .attr("cx",450)
+                    .attr("cy",400)
+                    .attr("r", 15)
+                    .style("stroke-width", "5")
+                    .style("stroke", "blue")
+                    .style("fill", "blue")
+
+                svg
+                    .append("circle")
+                    .attr("cx",450)
+                    .attr("cy",450)
+                    .attr("r", 15)
+                    .style("stroke-width", "5")
+                    .style("stroke", "red")
+                    .style("fill", "red")
+
+                svg
+                    .append("circle")
+                    .attr("cx",450)
+                    .attr("cy",500)
+                    .attr("r", 15)
+                    .style("stroke-width", "5")
+                    .style("stroke", "yellow")
+                    .style("fill", "yellow")
+            </script>
             
             <TODO: Figma diagrams> 
+            
         </section>
 
         <section class="container-lg">
