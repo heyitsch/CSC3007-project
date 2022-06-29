@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .bubbleInfo {
+            fill: none;
+            stroke: lightgray;
+            stroke-width: 2px;
+            cursor: help;
+        }
+
+        #tooltip {
+            visibility: hidden;
+            position: absolute;
+
+            background: rgb(85, 85, 85);
+            border-radius: 3px;
+            padding: 7px 13px;
+            color: white;
+        }
+
+        #tooltip.visible {
+            visibility: visible;
+        }
+
+        #parliamentChart svg {
+            display: block;
+            margin: auto;
+        }
+    </style>
+
+    <!--Add dependencies -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script src="./scripts/d3-parliament-chart.js"></script>
+    <script src="./scripts/d3-parliament-chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <script type="module" src="./app.js" defer></script>
+
+    <script>
+        $(window).on("load", function () {
+            $('embed').each(function () {
+                $(this).height($(this).width());
+            });
+        });
+
+        $(window).on("resize", function () {
+            $('embed').each(function () {
+                $(this).height($(this).width());
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="parliamentChart">
+        <h5>Using a parliament diagram can show the proportion of the congress seats easily</h5>
+        <svg viewBox="0 0 1000 600"></svg>
+    </div>
+    <script>
+
+        function generateSeats() {
+            let data = [
+                { seats: 40, color: 'blue' },
+                { seats: 60, color: 'red' },
+                { seats: 2, color: 'yellow' }
+            ]
+            return data
+        }
+
+        let width = 1000, height = 600;
+
+
+        let svg = d3.select("#parliamentChart")
+            .selectAll('svg')
+            .attr("width", width)
+            .attr("height", height)
+
+        //TODO: Add the correct seats accordingly to the congress data
+        let chart = d3.parliamentChart([], width)
+            .aggregatedData(generateSeats())
+
+        //TODO: Add legend for seats (republican or democrats or independent etc.)
+        svg.append('g')
+            .attr('transform', 'translate(0, 50)')
+            .call(chart)
+
+        svg.append("text")
+            .attr("x", "50%")
+            .attr("y", "5%")
+            .text("117th Congress Climate Denier Caucus - Selected State: Arizona")
+            .style("font-size", "24px")
+            .style("text-anchor", "middle")
+            .style("alignment-baseline", "middle")
+
+        svg.append("text")
+            .attr("x", 500)
+            .attr("y", 400)
+            .text("Republicants")
+            .style("font-size", "15px")
+            .attr("alignment-baseline", "middle")
+
+        svg.append("text")
+            .attr("x", 500)
+            .attr("y", 450)
+            .text("Democrats")
+            .style("font-size", "15px")
+            .attr("alignment-baseline", "middle")
+
+        svg.append("text")
+            .attr("x", 500)
+            .attr("y", 500)
+            .text("Independent")
+            .style("font-size", "15px")
+            .attr("alignment-baseline", "middle")
+
+        svg
+            .append("circle")
+            .attr("cx", 450)
+            .attr("cy", 400)
+            .attr("r", 15)
+            .style("stroke-width", "5")
+            .style("stroke", "blue")
+            .style("fill", "blue")
+
+        svg
+            .append("circle")
+            .attr("cx", 450)
+            .attr("cy", 450)
+            .attr("r", 15)
+            .style("stroke-width", "5")
+            .style("stroke", "red")
+            .style("fill", "red")
+
+        svg
+            .append("circle")
+            .attr("cx", 450)
+            .attr("cy", 500)
+            .attr("r", 15)
+            .style("stroke-width", "5")
+            .style("stroke", "yellow")
+            .style("fill", "yellow")
+    </script>
+
+
+</body>
+
+</html>

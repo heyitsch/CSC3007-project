@@ -123,10 +123,11 @@
                     tooltip
                         .style("top", (e.pageY - 35) + "px")
                         .style("left", (e.pageX + 10) + "px")
-                        .html(`Country Name : <strong>${d.city} <strong></br>
+                        .html(`Country Name : <strong>${d.city} </strong></br>
                             Obesity rate: ${d.obesity} </br>
                             Ranking: ${d.index + 1}/44`)
-                });
+                })
+                .attr("stroke", "grey")
 
             // labels
             labels = elements
@@ -172,6 +173,8 @@
             let obesityDataSorted = obesityData.sort(function (a, b) { return a["obesity"] - b["obesity"] })
             console.log(obesityDataSorted)
             displayChart('#viz', obesityDataSorted)
+
+            
         })
     </script>
 

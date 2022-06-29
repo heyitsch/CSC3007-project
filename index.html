@@ -1,291 +1,313 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-     
-        <style>
-            header, section {
-                padding: 1em;
-            }
 
-            img {
-                width: 100%;
-            }
+<head>
+    <meta charset="UTF-8">
 
-        </style>
+    <style>
+        header,
+        section {
+            padding: 1em;
+        }
 
-        <!--Add dependencies -->
-        <script src="https://d3js.org/d3.v7.min.js"></script>
+        img {
+            width: 100%;
+        }
 
-        <script src="./scripts/d3-parliament-chart.js"></script>
-        <script src="./scripts/d3-parliament-chart.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        #parliament-figure {
+            height: 600px;
+        }
 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        body h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        ul,
+        li,
+        p {
+            font-family: 'Comic Neue', cursive;
+        }
+    </style>
 
-        <script type="module" src="./app.js" defer></script>
-        
-        <script>
-            $(window).on("load", function () {
-                $('embed').each(function() {
-                    $(this).height($(this).width());
-                });
+    <!--Add dependencies -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script src="./scripts/d3-parliament-chart.js"></script>
+    <script src="./scripts/d3-parliament-chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+    <script type="module" src="./app.js" defer></script>
+
+
+    <script>
+        $(window).on("load", function () {
+            $('embed').each(function () {
+                $(this).height($(this).width());
             });
+        });
 
-            $(window).on("resize", function () {
-                $('embed').each(function() {
-                    $(this).height($(this).width());
-                });
+        $(window).on("resize", function () {
+            $('embed').each(function () {
+                $(this).height($(this).width());
             });
-        </script>
-    </head>
+        });
+    </script>
+</head>
 
-    <body>
+<body>
 
-        <header class="container-lg">
-            <h1><strong>Data-Task-Idiom critique of two data visualisations</strong></h1>
-        </header>
-        
-        <section class="container-lg">
-            <h2><strong>1st Visualisation: 117th Congress by Views of Climate </strong></h2>
+    <header class="container-lg">
+        <h1><strong>Data-Task-Idiom critique of two data visualisations</strong></h1>
+    </header>
 
-            <h3>Introduction to visualisation:</h3>
+    <section class="container-lg">
+        <h2><strong>1st Visualisation: 117th Congress by Views of Climate </strong></h2>
 
-            <p>This data visualisation was created and published on Sub-reddit /r/visualisation to 
-            show the ratio of acceptance and objections of the climate change bill during the 117th 
-            United States Congress, which was attended by 100 senators and 435 representatives from 
+        <h3>Introduction to visualisation:</h3>
+
+        <p>This data visualisation was created and published on Sub-reddit /r/visualisation to
+            show the ratio of acceptance and objections of the climate change bill during the 117th
+            United States Congress, which was attended by 100 senators and 435 representatives from
             either the Republican, Democrat or independent party candidates.</p>
-            
-            <img src="https://github.com/heyitsch/CSC3007-project/raw/dd15504f4821a584ecc095edcbcae788007d7e7a/viz1.jpg">
 
-            <p>
-                Source:<br>
-                <a href="https://www.reddit.com/r/visualization/comments/qw6bjo/117th_congress_by_party_and_acceptance_of_climate/">
+        <img src="https://github.com/heyitsch/CSC3007-project/raw/dd15504f4821a584ecc095edcbcae788007d7e7a/viz1.jpg">
+
+        <p>
+            Source:<br>
+            <a
+                href="https://www.reddit.com/r/visualization/comments/qw6bjo/117th_congress_by_party_and_acceptance_of_climate/">
                 https://www.reddit.com/r/visualization/comments/qw6bjo/117th_congress_by_party_and_acceptance_of_climate/
-                </a>
-            </p>
-                    
-            <h3>Data (What):</h3>
-            <ul>
-                <li>Pictorial Unit Chart, with each data point representing a member of congress, 
-                and the colour code represents their party (Republican, Democrat or Independent), 
-                also other legends such as climate denier or climate caucus will be applied to the 
-                data points.</li>
+            </a>
+        </p>
 
-                
-            </ul>
-            
-            <h3>Task (Why):</h3>
-            <ul>
-                <li>To present the number of members of a party which is against climate change, and 
+        <h3>Data (What):</h3>
+        <ul>
+            <li>Each data points represents a member of congress, with each colour code representing a specific party
+                (Republican, Democrat or Independent).
+                Also, the data described the stance of the political representatives, whether they were climate change
+                deniers or caucus.
+            </li>
+
+            <li>
+                The data attribute is categorical (different parties), nominal with no implicit ordering. The data
+                points in then embedded into the visual encoding which is a Pictorial Unit Chart
+            </li>
+        </ul>
+
+        <h3>Task (Why):</h3>
+        <ul>
+            <li> <strong>Analyze</strong> : The visual aims to <strong>present</strong>the statistics on the number of
+                members of a
+                party which is against climate change, and the number of members working towards climate change. It also
+                shows the individual breakdown of the number of votes for or against climate change for the individual
+                states. There aren't any annotated or derived statistics or trends from the visualisation, overall its
+                task action is mainly to present current findings (Casual visualisation).</li>
+
+            <li> <strong>Search</strong>: In essence, the target and location boundary of the visualisation is known and
+                the task is to perform a lookup on the congress data and to plot them onto the visualisation.
+            </li>
+            <li> <strong>Query</strong>: There are two elements of the query within this visualisation, one is the
+                pairwise comparison between the parties. The visualisation also attempts to summarise the findings onto
+                a single visualisation as opposed to identifying trends by plotting representatives and senates from all
+                states onto a single data visualisation.
+            </li>
+
+            <li>To present the number of members of a party which is against climate change, and
                 the number of members working towards climate change. </li>
-                <li>To show the individual breakdown of the number of votes for/against climate 
+            <li>To show the individual breakdown of the number of votes for/against climate
                 change for the individual states.</li>
-            </ul>
-            
-            <h3>Idiom (How):</h3>
-            <ul>
-                <li>The contrast of the foreground colours with the background is very low and makes 
+        </ul>
+
+        <h3>Idiom (How):</h3>
+        <ul>
+            <li>The contrast of the foreground colours with the background is very low and makes
                 the readability very poor</li>
-                <li>There is no description of what a climate denier is and what makes a 
+
+            <li>Colours were not effectively used to convey and create associations. It is not apparent which state has
+                more climate deniers or supporters at a glance, perhaps using Gestalt’s Principles (Similarity), can
+                group the data points separately into climate supporters and deniers. </li>
+            <li>There is no description of what a climate denier is and what makes a
                 representative one</li>
-                <li>The legend for a climate denier is depicted as a striked out yellow circle with 
-                a stroke through the centre but the actual representation in the chart is different 
+            <li>The legend for a climate denier is depicted as a striked out yellow circle with
+                a stroke through the centre but the actual representation in the chart is different
                 (Does not match with the legend in the chart)</li>
-                <li>The representatives are subdivided by their represented states but there is no 
+            <li>The representatives are subdivided by their represented states but there is no
                 clear idea on what is the purpose of doing so</li>
-            </ul>
-            
-            <h3>Suggestion on how to improve the visualisation with D3.js examples</h3>
-            <ul>
-                <li>Use a better colour combinations for the legend</li>
-                <li>Alternatively, the data could be plot using parliament chart for a more 
-                effective overview of the voting outcomes.</li>
-                <li><a href="https://it.usembassy.gov/shifts-in-the-new-u-s-congress-infographic/">
-                https://it.usembassy.gov/shifts-in-the-new-u-s-congress-infographic/</a></li>
-                <li><a href="https://www.momscleanairforce.org/climate-deniers-2/">
-                https://www.momscleanairforce.org/climate-deniers-2/</a></li>
-            </ul>
-            
-            <div id="parliamentChart">
-                <h5>Using a parliament diagram can show the proportion of the congress seats easily</h5>
-                
-                <svg></svg>
+        </ul>
+
+        <h3>Suggestion on how to improve the visualisation with D3.js examples</h3>
+        <ul>
+            <li>Use a better colour combinations for the legend</li>
+            <li>Alternatively, the data could be plotted using a parliament chart. It could either be sorted on a
+                state-level or even party level. At a single glance, the diagram allows viewers to immediately know
+                which party has more seats (votes). It significantly reduces the cognitive load on the viewer, if let’s
+                say there were to do a comparison between states, they would not have to calculate which states has
+                more/less votes as it is already presented clearly in the parliament diagram.
+                There should also be a summary of the findings, for example:
+
+                <ul>
+                    <li>1. Percentage of Climate Caucus vs Climate Deniers in a regional (north, south east west) level
+                        using Choropleth maps/ Bubbles, as we know one of the channel effectiveness principles that can
+                        be applied here is also accuracy.</li>
+                    <li>2. Percentage of Climate Caucus vs Climate Deniers in state level.</li>
+                </ul>
+            <li><a href="https://it.usembassy.gov/shifts-in-the-new-u-s-congress-infographic/">
+                    https://it.usembassy.gov/shifts-in-the-new-u-s-congress-infographic/</a></li>
+            <li><a href="https://www.momscleanairforce.org/climate-deniers-2/">
+                    https://www.momscleanairforce.org/climate-deniers-2/</a></li>
+        </ul>
+
+        <figure class="row align-items-center embed-responsive embed-responsive-1by1">
+            <div id="parliament-figure">
+                <embed class="col-12 embed-responsive-item" src="./example-parliament.html"></embed>
             </div>
-            <script>
-                
-                let width = 1000, height = 600;
-                let data = [
-                    {seats: 40, color: 'blue'},
-                    {seats: 70, color: 'red'},
-                    {seats: 2, color: 'yellow'}
-                ]
+        </figure>
 
-                let svg = d3.select("#parliamentChart")
-                    .selectAll('svg')   
-                    .attr("width", width)
-                    .attr("height", height)
+    </section>
 
-                //TODO: Add the correct seats accordingly to the congress data
-                let chart = d3.parliamentChart([], width)
-                    .aggregatedData(data)
-                
-                //TODO: Add legend for seats (republican or democrats or independent etc.)
-                svg.append('g')
-                    .attr('transform', 'translate(0, 50)')
-                    .call(chart)
+    <section class="container-lg">
+        <h2><strong>2nd Visualisation: 2021 Healthy Lifestyle Report </strong></h2>
 
-                svg.append("text")
-                    .attr("x", 50)
-                    .attr("y", 30)
-                    .text("117th Congress Climate Denier Caucus - Selected State: Arizona")
-                    .style("font-size", "24px")
-                    .attr("alignment-baseline","middle")
-                    
-
-                svg.append("text")
-                    .attr("x", 500)
-                    .attr("y", 400)
-                    .text("Republicants")
-                    .style("font-size", "15px")
-                    .attr("alignment-baseline","middle")
-
-                svg.append("text")
-                    .attr("x", 500)
-                    .attr("y", 450)
-                    .text("Democrats")
-                    .style("font-size", "15px")
-                    .attr("alignment-baseline","middle")
-
-                svg.append("text")
-                    .attr("x", 500)
-                    .attr("y", 500)
-                    .text("Independent")
-                    .style("font-size", "15px")
-                    .attr("alignment-baseline","middle")
-
-                svg
-                    .append("circle")
-                    .attr("cx",450)
-                    .attr("cy",400)
-                    .attr("r", 15)
-                    .style("stroke-width", "5")
-                    .style("stroke", "blue")
-                    .style("fill", "blue")
-
-                svg
-                    .append("circle")
-                    .attr("cx",450)
-                    .attr("cy",450)
-                    .attr("r", 15)
-                    .style("stroke-width", "5")
-                    .style("stroke", "red")
-                    .style("fill", "red")
-
-                svg
-                    .append("circle")
-                    .attr("cx",450)
-                    .attr("cy",500)
-                    .attr("r", 15)
-                    .style("stroke-width", "5")
-                    .style("stroke", "yellow")
-                    .style("fill", "yellow")
-            </script>
-            
-            <TODO: Figma diagrams> 
-            
-        </section>
-
-        <section class="container-lg">
-            <h2>2nd Visualisation: 2021 Healthy Lifestyle Report</h2>
-
-            <h3>Introduction to visualisation:</h3>
-            <p>This visualisation was created by Jennifer Nicole Falk and published to the Tableau 
-            public website. This visualisation is a visual representation of the linked dataset of 
+        <h3>Introduction to visualisation:</h3>
+        <p>This visualisation was created by Jennifer Nicole Falk and published to the Tableau
+            public website. This visualisation is a visual representation of the linked dataset of
             10 measures that contribute to a healthy lifestyle.</p>
-            
-            <img src="https://github.com/heyitsch/CSC3007-project/raw/dd15504f4821a584ecc095edcbcae788007d7e7a/viz2.png">
 
-            <p>
-                Source:<br>
-                <a href="https://public.tableau.com/app/profile/drjfalk/viz/HealthyLIfestyle_2021/HealthyLifestyle_Dashboard#1">
+        <img src="https://github.com/heyitsch/CSC3007-project/raw/dd15504f4821a584ecc095edcbcae788007d7e7a/viz2.png">
+
+        <p>
+            Source:<br>
+            <a
+                href="https://public.tableau.com/app/profile/drjfalk/viz/HealthyLIfestyle_2021/HealthyLifestyle_Dashboard#1">
                 https://public.tableau.com/app/profile/drjfalk/viz/HealthyLIfestyle_2021/HealthyLifestyle_Dashboard#1
-                </a><br>
-                <a href="https://www.kaggle.com/datasets/prasertk/healthy-lifestyle-cities-report-2021">
+            </a><br>
+            <a href="https://www.kaggle.com/datasets/prasertk/healthy-lifestyle-cities-report-2021">
                 https://www.kaggle.com/datasets/prasertk/healthy-lifestyle-cities-report-2021
-                </a>
-            </p>
-            
-            <h3>Data (What) :</h3>
+            </a>
+        </p>
+
+        <h3>Data (What) :</h3>
+        <ul>
+            <li>Data is presented using both heat map table and a parallel coordinate line chart
+            </li>
+            <li>For the parallel coordinate line chart, it requires a lot of cognitive effort to
+                evaluate which country fared well for each of the metrics. </li>
+            <li>The dataset (from Kaggle) records the statistics of each metric but the author
+                decided to omit it and present just the ranking.</li>
+        </ul>
+
+        <h3>Task (Why):</h3>
+        <ul>
             <ul>
-                <li>Data is presented using both heat map table and a parallel coordinate line chart
+                <li><strong>Analyse</strong>: To present the healthiness of various first-world cities across the world.
+                    The heatmap is attempting to show which countries have higher ranks across the 7 categories chosen
+                    by the author.
+                    The parallel coordinate chart attempts varying individual rankings within the 7 categories for the
+                    top 10 overall ranked cities.
                 </li>
-                <li>For the parallel coordinate line chart, it requires a lot of cognitive effort to 
-                    evaluate which country fared well for each of the metrics. </li>
-                <li>The dataset (from Kaggle) records the statistics of each metric but the author 
-                    decided to omit it and present just the ranking.</li>
-            </ul>
 
-            <h3>Task (Why):</h3>
-            <ul>
-                <li>To present the healthiness of various first-world cities across the world. The 
-                    heatmap is attempting to show which countries have higher ranks across the 7 
-                    categories chosen by the author. The parallel coordinate chart attempts varying 
-                    individual rankings within the 7 categories for the top 10 overall ranked 
-                    cities.</li>
-            </ul>
+                <li>
+                    <strong>Search: </strong>
+                    The data is presented in a straightforward manner, given the known target (cities), the viewer has
+                    to locate it based on the cities ranking.
+                </li>
 
-            <h3>Idiom (How):</h3>
-            <ul>
-                <li>The 'Overall Rank' metric stacks all of the Top 10 countries together, the data 
-                is compressed and it feels like there is no significant difference between the 
+                <li>
+                    <strong>Query: </strong>
+                    The visualisation aims to compare healthy lifestyle rankings of the different countries
+                </li>
+
+                <li>
+                    <strong>Target: </strong>
+                    One attribute which is the ranking of the cities, and also to browse the topology of the network
+                    graph to perform comparison.
+                </li>
+
+
+            </ul>
+        </ul>
+
+        <h3>Idiom (How):</h3>
+        <ul>
+            <li>The 'Overall Rank' metric stacks all of the Top 10 countries together, the data
+                is compressed and it feels like there is no significant difference between the
                 rankings.</li>
-                <li>Line chart is usually used to depict a trend/pattern but in this case the 
-                trend/pattern is different for all the top 10 countries, and when it is stacked 
+            <li>Line chart is usually used to depict a trend/pattern but in this case the
+                trend/pattern is different for all the top 10 countries, and when it is stacked
                 together it appears very confusing.</li>
-                <li>For the Heat Map Table, the lighter colours are supposed to show the countries 
-                that are ranked high in the report, and the darker colours are used to depict lower 
+            <li>For the Heat Map Table, the lighter colours are supposed to show the countries
+                that are ranked high in the report, and the darker colours are used to depict lower
                 rank, but it is confusing.</li>
-                <li>The metrics colours blend in with each other, and leave the reader 
+            <li>The metrics colours blend in with each other, and leave the reader
                 confused.</li>
-            </ul>
+        </ul>
 
-            <h3>Suggestion on how to improve the visualisation</h3>
-            <ul>
-                <li>When you convert metrics like Sunlights to a ranking, you lose the “intensity” 
-                of the scale. Instead we could compare the metrics individually (story 
-                telling).</li>
-            </ul>    
+        <h3>Suggestion on how to improve the visualisation with D3.js examples</h3>
+        <ul>
+            <li>When you convert metrics like Sunlights to a ranking, you lose the “intensity” of the scale. The
+                difference between rank 1 and rank 2 for sunlight is not apparent and bould range from 1 hour difference
+                to 100 hours difference. Instead we could compare the metrics individually or separately (story telling)
+            </li>
+        </ul>
 
-            <!-- <TODO: Figma diagrams> -->
-            
-            <figure class="row align-items-center embed-responsive embed-responsive-1by1">
-                <embed class="col-7 embed-responsive-item" src="./example-sunshine.html"></embed>
-                <figcaption class="col-5">
-                    Morbi tincidunt interdum nibh eu pretium. Aliquam lectus eros, tempus quis libero ut, fringilla convallis ex. Quisque euismod turpis at enim sagittis placerat. Praesent eu orci vel nibh volutpat semper. Pellentesque convallis tempus mi in venenatis. In non aliquet ex. Curabitur nec fermentum tortor, non tincidunt libero.
-                    <br><br>
-                    Fusce placerat, ligula at placerat porta, massa erat tempor lacus, vel vehicula libero enim ac erat. Sed semper neque a tellus mollis tincidunt. Integer sodales ex eget sagittis consectetur. Mauris tincidunt nunc vel porta porttitor. Cras vitae dolor id ante condimentum interdum. Proin mollis enim scelerisque, efficitur nibh vel, ultricies odio. Nunc sit amet mollis orci. Nullam pulvinar sed lectus at semper. Nam lacus diam, eleifend vitae auctor non, fringilla a est. Aliquam erat volutpat. 
-                </figcaption>
-            </figure>
+        <figure class="row align-items-center embed-responsive embed-responsive-1by1">
+            <embed class="col-7 embed-responsive-item" src="./example-sunshine.html"></embed>
+            <figcaption class="col-5">
+                Morbi tincidunt interdum nibh eu pretium. Aliquam lectus eros, tempus quis libero ut, fringilla
+                convallis ex. Quisque euismod turpis at enim sagittis placerat. Praesent eu orci vel nibh volutpat
+                semper. Pellentesque convallis tempus mi in venenatis. In non aliquet ex. Curabitur nec fermentum
+                tortor, non tincidunt libero.
+                <br><br>
+                Fusce placerat, ligula at placerat porta, massa erat tempor lacus, vel vehicula libero enim ac erat. Sed
+                semper neque a tellus mollis tincidunt. Integer sodales ex eget sagittis consectetur. Mauris tincidunt
+                nunc vel porta porttitor. Cras vitae dolor id ante condimentum interdum. Proin mollis enim scelerisque,
+                efficitur nibh vel, ultricies odio. Nunc sit amet mollis orci. Nullam pulvinar sed lectus at semper. Nam
+                lacus diam, eleifend vitae auctor non, fringilla a est. Aliquam erat volutpat.
+            </figcaption>
+        </figure>
 
-            <figure class="row align-items-center embed-responsive embed-responsive-1by1">
-                <embed class="col-7 embed-responsive-item" src="./example-happinesslevels.html"></embed>
-                <figcaption class="col-5">
-                    Morbi tincidunt interdum nibh eu pretium. Aliquam lectus eros, tempus quis libero ut, fringilla convallis ex. Quisque euismod turpis at enim sagittis placerat. Praesent eu orci vel nibh volutpat semper. Pellentesque convallis tempus mi in venenatis. In non aliquet ex. Curabitur nec fermentum tortor, non tincidunt libero.
-                    <br><br>
-                    Fusce placerat, ligula at placerat porta, massa erat tempor lacus, vel vehicula libero enim ac erat. Sed semper neque a tellus mollis tincidunt. Integer sodales ex eget sagittis consectetur. Mauris tincidunt nunc vel porta porttitor. Cras vitae dolor id ante condimentum interdum. Proin mollis enim scelerisque, efficitur nibh vel, ultricies odio. Nunc sit amet mollis orci. Nullam pulvinar sed lectus at semper. Nam lacus diam, eleifend vitae auctor non, fringilla a est. Aliquam erat volutpat. 
-                </figcaption>
-            </figure>
+        <figure class="row align-items-center embed-responsive embed-responsive-1by1">
+            <embed class="col-7 embed-responsive-item" src="./example-happinesslevels.html"></embed>
+            <figcaption class="col-5">
+                Morbi tincidunt interdum nibh eu pretium. Aliquam lectus eros, tempus quis libero ut, fringilla
+                convallis ex. Quisque euismod turpis at enim sagittis placerat. Praesent eu orci vel nibh volutpat
+                semper. Pellentesque convallis tempus mi in venenatis. In non aliquet ex. Curabitur nec fermentum
+                tortor, non tincidunt libero.
+                <br><br>
+                Fusce placerat, ligula at placerat porta, massa erat tempor lacus, vel vehicula libero enim ac erat. Sed
+                semper neque a tellus mollis tincidunt. Integer sodales ex eget sagittis consectetur. Mauris tincidunt
+                nunc vel porta porttitor. Cras vitae dolor id ante condimentum interdum. Proin mollis enim scelerisque,
+                efficitur nibh vel, ultricies odio. Nunc sit amet mollis orci. Nullam pulvinar sed lectus at semper. Nam
+                lacus diam, eleifend vitae auctor non, fringilla a est. Aliquam erat volutpat.
+            </figcaption>
+        </figure>
 
-            <figure class="row align-items-center embed-responsive embed-responsive-1by1">
-                <embed class="col-10 embed-responsive-item" src="./example-obesity.html"></embed>
-                <figcaption class="col-2">
-                    Morbi tincidunt interdum nibh eu pretium. Aliquam lectus eros, tempus quis libero ut, fringilla convallis ex. Quisque euismod turpis at enim sagittis placerat. Praesent eu orci vel nibh volutpat semper. Pellentesque convallis tempus mi in venenatis. In non aliquet ex. Curabitur nec fermentum tortor, non tincidunt libero.
-                    <br><br>
-                    Fusce placerat, ligula at placerat porta, massa erat tempor lacus, vel vehicula libero enim ac erat. Sed semper neque a tellus mollis tincidunt. Integer sodales ex eget sagittis consectetur. Mauris tincidunt nunc vel porta porttitor. Cras vitae dolor id ante condimentum interdum. Proin mollis enim scelerisque, efficitur nibh vel, ultricies odio. Nunc sit amet mollis orci. Nullam pulvinar sed lectus at semper. Nam lacus diam, eleifend vitae auctor non, fringilla a est. Aliquam erat volutpat. 
-                </figcaption>
-            </figure>
-        </section>
+        <figure class="row align-items-center embed-responsive embed-responsive-1by1">
+            <embed class="col-10 embed-responsive-item" src="./example-obesity.html"></embed>
+            <figcaption class="col-2">
+                Morbi tincidunt interdum nibh eu pretium. Aliquam lectus eros, tempus quis libero ut, fringilla
+                convallis ex. Quisque euismod turpis at enim sagittis placerat. Praesent eu orci vel nibh volutpat
+                semper. Pellentesque convallis tempus mi in venenatis. In non aliquet ex. Curabitur nec fermentum
+                tortor, non tincidunt libero.
+                <br><br>
+                Fusce placerat, ligula at placerat porta, massa erat tempor lacus, vel vehicula libero enim ac erat. Sed
+                semper neque a tellus mollis tincidunt. Integer sodales ex eget sagittis consectetur. Mauris tincidunt
+                nunc vel porta porttitor. Cras vitae dolor id ante condimentum interdum. Proin mollis enim scelerisque,
+                efficitur nibh vel, ultricies odio. Nunc sit amet mollis orci. Nullam pulvinar sed lectus at semper. Nam
+                lacus diam, eleifend vitae auctor non, fringilla a est. Aliquam erat volutpat.
+            </figcaption>
+        </figure>
+    </section>
 
-    </body>
+</body>
+
 </html>
