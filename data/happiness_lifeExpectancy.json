@@ -1,0 +1,226 @@
+[
+    {
+      "City": "Amsterdam",
+      "HappinessLevel": 7,
+      "LifeExpectancy": 81.2
+    },
+    {
+      "City": "Sydney",
+      "HappinessLevel": 7,
+      "LifeExpectancy": 82.1
+    },
+    {
+      "City": "Vienna",
+      "HappinessLevel": 7,
+      "LifeExpectancy": 81
+    },
+    {
+      "City": "Stockholm",
+      "HappinessLevel": 7,
+      "LifeExpectancy": 81.8
+    },
+    {
+      "City": "Copenhagen",
+      "HappinessLevel": 7,
+      "LifeExpectancy": 79.8
+    },
+    {
+      "City": "Helsinki",
+      "HappinessLevel": 7,
+      "LifeExpectancy": 80.4
+    },
+    {
+      "City": "Fukuoka",
+      "HappinessLevel": 5,
+      "LifeExpectancy": 83.2
+    },
+    {
+      "City": "Berlin",
+      "HappinessLevel": 7,
+      "LifeExpectancy": 80.6
+    },
+    {
+      "City": "Barcelona",
+      "HappinessLevel": 6,
+      "LifeExpectancy": 82.2
+    },
+    {
+      "City": "Vancouver",
+      "HappinessLevel": 7,
+      "LifeExpectancy": 81.7
+    },
+    {
+      "City": "Melbourne",
+      "HappinessLevel": 7,
+      "LifeExpectancy": 82.1
+    },
+    {
+      "City": "Beijing",
+      "HappinessLevel": 5,
+      "LifeExpectancy": 75.4
+    },
+    {
+      "City": "Bangkok",
+      "HappinessLevel": 5,
+      "LifeExpectancy": 74.1
+    },
+    {
+      "City": "Buenos Aires",
+      "HappinessLevel": 5,
+      "LifeExpectancy": 75.9
+    },
+    {
+      "City": "Toronto",
+      "HappinessLevel": 7,
+      "LifeExpectancy": 81.7
+    },
+    {
+      "City": "Madrid",
+      "HappinessLevel": 6,
+      "LifeExpectancy": 82.2
+    },
+    {
+      "City": "Jakarta",
+      "HappinessLevel": 5,
+      "LifeExpectancy": 68.5
+    },
+    {
+      "City": "Seoul",
+      "HappinessLevel": 5,
+      "LifeExpectancy": 81.3
+    },
+    {
+      "City": "Frankfurt",
+      "HappinessLevel": 7,
+      "LifeExpectancy": 80.6
+    },
+    {
+      "City": "Geneva",
+      "HappinessLevel": 7,
+      "LifeExpectancy": 82.6
+    },
+    {
+      "City": "Tel Aviv",
+      "HappinessLevel": 7,
+      "LifeExpectancy": 81.9
+    },
+    {
+      "City": "Istanbul",
+      "HappinessLevel": 5,
+      "LifeExpectancy": 74.7
+    },
+    {
+      "City": "Cairo",
+      "HappinessLevel": 4,
+      "LifeExpectancy": 70.7
+    },
+    {
+      "City": "Taipei",
+      "HappinessLevel": 5,
+      "LifeExpectancy": 75.4
+    },
+    {
+      "City": "Los Angeles",
+      "HappinessLevel": 6,
+      "LifeExpectancy": 78.8
+    },
+    {
+      "City": "Mumbai",
+      "HappinessLevel": 3,
+      "LifeExpectancy": 67.3
+    },
+    {
+      "City": "Boston",
+      "HappinessLevel": 6,
+      "LifeExpectancy": 78.8
+    },
+    {
+      "City": "Dublin",
+      "HappinessLevel": 7,
+      "LifeExpectancy": 80.5
+    },
+    {
+      "City": "Tokyo",
+      "HappinessLevel": 5,
+      "LifeExpectancy": 83.2
+    },
+    {
+      "City": "Chicago",
+      "HappinessLevel": 6,
+      "LifeExpectancy": 78.8
+    },
+    {
+      "City": "Hong Kong",
+      "HappinessLevel": 5,
+      "LifeExpectancy": 75.4
+    },
+    {
+      "City": "Shanghai",
+      "HappinessLevel": 5,
+      "LifeExpectancy": 75.4
+    },
+    {
+      "City": "Brussels",
+      "HappinessLevel": 6,
+      "LifeExpectancy": 80.4
+    },
+    {
+      "City": "San Francisco",
+      "HappinessLevel": 6,
+      "LifeExpectancy": 78.8
+    },
+    {
+      "City": "Paris",
+      "HappinessLevel": 6,
+      "LifeExpectancy": 81.8
+    },
+    {
+      "City": "Sao Paulo",
+      "HappinessLevel": 6,
+      "LifeExpectancy": 73.9
+    },
+    {
+      "City": "Zurich",
+      "HappinessLevel": 7,
+      "LifeExpectancy": 82.6
+    },
+    {
+      "City": "London",
+      "HappinessLevel": 7,
+      "LifeExpectancy": 80.4
+    },
+    {
+      "City": "Johannesburg",
+      "HappinessLevel": 4,
+      "LifeExpectancy": 56.3
+    },
+    {
+      "City": "Milan",
+      "HappinessLevel": 6,
+      "LifeExpectancy": 82.7
+    },
+    {
+      "City": "Washington, D.C.",
+      "HappinessLevel": 6,
+      "LifeExpectancy": 78.8
+    },
+    {
+      "City": "New York",
+      "HappinessLevel": 6,
+      "LifeExpectancy": 78.8
+    },
+    {
+      "City": "Moscow",
+      "HappinessLevel": 5,
+      "LifeExpectancy": 69.5
+    },
+    {
+      "City": "Mexico City",
+      "HappinessLevel": 6,
+      "LifeExpectancy": 76.4
+    },
+    {
+      "HappinessLevel": null,
+      "LifeExpectancy": null
+    }
+  ]

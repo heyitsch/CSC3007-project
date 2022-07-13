@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <!-- Vega Tooltip -->
+    <script src="https://cdn.jsdelivr.net/npm/vega-tooltip"></script>
+</head>
+<body>
+    <h1>Test</h1>
+
+    <div id="view"></div>
+    <script type="text/javascript">
+
+    //Link to the .csv file
+    let healthyCsv = "https://gist.githubusercontent.com/kaiongit/b5cb14707348f962bf5677d80f6e4759/raw/340c766a5b7ea92e1a20080e37d2f6677424bf6c/healthy_lifestyle_city_2021.csv";
+
+    let scatterPlotData = []
+    //Extra and populate
+    function extractData() {
+        d3.csv(healthyCsv)
+        .then(data => {
+            for(var key in data) {
+
+                let dataObj = {}
+                
+                dataObj.City = data[key]['City']
+                dataObj.HappinessLevel = parseInt(data[key]['Happiness levels(Country)'])
+                dataObj.LifeExpectancy = parseFloat(data[key]['Life expectancy(years) (Country)'])
+
+                scatterPlotData.push(dataObj)
+            }
+            const test = JSON.stringify(scatterPlotData)
+            console.log(test)
+
+            console.log(scatterPlotData)
+
+        })
+    }
+
+    
+
+    var view;
+      fetch('./vega-json/scatterplot_config.json')
+      .then(res => res.json())
+      .then(spec => render(spec))
+      .catch(err => console.error(err));
+
+    function render(spec) {
+    var handler = new vegaTooltip.Handler();
+      view = new vega.View(vega.parse(spec), {
+        renderer:  'canvas',  // renderer (canvas or svg)
+        container: '#view',   // parent DOM container
+        hover:     true       // enable hover processing
+      });
+      extractData()
+      view.tooltip(handler.call)
+      view.initialize(document.getElementById('view'))
+      return view.runAsync();
+    }
+
+
+    </script>
+
+    
+    
+</body>
+</html>

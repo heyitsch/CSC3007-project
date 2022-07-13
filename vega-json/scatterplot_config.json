@@ -1,0 +1,103 @@
+{
+    "$schema": "https://vega.github.io/schema/vega/v5.json",
+    "description": "A labeled scatter plot of films showing Rotten Tomatoes ratings versus IMDB ratings.",
+    "padding": 5,
+    "width": 800,
+    "height": 600,
+    "autosize": "pad",
+  
+    "data": [
+      {
+        "name": "happiness_lifeExpectancy",
+        "url": "data/happiness_lifeExpectancy.json",
+        "transform": [
+          {
+            "type": "filter",
+            "expr": "datum['HappinessLevel'] != null && datum['LifeExpectancy'] != null"
+          }
+        ]
+      },
+      {
+        "name": "fit",
+        "source": "happiness_lifeExpectancy",
+        "transform": [
+          {
+            "type": "regression",
+            "method": "quad",
+            "x": "HappinessLevel",
+            "y": "LifeExpectancy",
+            "as": ["u", "v"]
+          }
+        ]
+      }
+    ],
+  
+    "scales": [
+      {
+        "name": "x",
+        "type": "symlog",
+        "domain": {"data": "happiness_lifeExpectancy", "field": "HappinessLevel"},
+        "range": "width"
+      },
+      {
+        "name": "y",
+        "type": "symlog",
+        "domain": {"data": "happiness_lifeExpectancy", "field": "LifeExpectancy"},
+        "range": "height"
+      }
+    ],
+  
+    "axes": [
+      {"orient": "left", "scale": "y", "title": "Life Expectancy (Age)", "labelFontSize": 15, "titleFontSize": 15},
+      {"orient": "bottom", "scale": "x", "title": "Happiness Level", "labelFontSize": 15, "titleFontSize": 15}
+    ],
+  
+    "marks": [
+      {
+        "name": "points",
+        "type": "symbol",
+        "from": {"data": "happiness_lifeExpectancy"},
+        "encode": {
+          "enter": {
+            "tooltip": {"signal": "{'Life Expectancy': datum.LifeExpectancy,'City/Country Name': datum.City,'Happiness Level': datum.HappinessLevel,}"},
+            "x": {"scale": "x", "field": "HappinessLevel"},
+            "y": {"scale": "y", "field": "LifeExpectancy"},
+            "size": {"value": 100},
+            "fillOpacity": {"value": 0.8}
+          }
+        }
+      },
+      {
+        "name": "trend",
+        "type": "line",
+        "from": {"data": "fit"},
+        "encode": {
+          "enter": {
+            "x": {"scale": "x", "field": "u"},
+            "y": {"scale": "y", "field": "v"},
+            "stroke": {"value": "firebrick"}
+          }
+        }
+      },
+      {
+        "type": "text",
+        "from": {"data": "points"},
+        "encode": {
+          "enter": {
+            "text": {"field": "datum.City"},
+            "fontSize": {"value": 14},
+            "fontWeight":{"value": "bold"}
+          }
+        },
+        "transform": [
+          {
+            "type": "label",
+            "avoidMarks": ["trend"],
+            "anchor": ["top", "bottom", "right", "left"],
+            "offset": [1],
+            "size": {"signal": "[width + 100, height]"}
+          }
+        ]
+      }
+    ]
+  }
