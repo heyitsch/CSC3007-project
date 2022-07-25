@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+        header,
+        section {
+            padding: 1em;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        #parliament-figure {
+            height: 600px;
+        }
+
+        body h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        ul,
+        li,
+        p {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+
+    <!--Add dependencies -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script src="./scripts/d3-parliament-chart.js"></script>
+    <script src="./scripts/d3-parliament-chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+    <script type="module" src="./app.js" defer></script>
+
+
+    <script>
+        $(window).on("load", function () {
+            $('embed').each(function () {
+                $(this).height($(this).width());
+            });
+        });
+
+        $(window).on("resize", function () {
+            $('embed').each(function () {
+                $(this).height($(this).width());
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <header class="container-lg">
+        <h1><strong>Data-Task-Idiom critique of two data visualisations</strong></h1>
+    </header>
+
+    <section class="container-lg">
+        <h2><strong>2nd Visualisation: 2021 Healthy Lifestyle Report </strong></h2>
+
+        <h3>Suggestion on how to improve the visualisation with D3.js examples</h3>
+        <ul>
+            <li>When you convert metrics like Sunlights to a ranking, you lose the “intensity” of the scale. The
+                difference between rank 1 and rank 2 for sunlight is not apparent and bould range from 1 hour difference
+                to 100 hours difference. Instead we could compare the metrics individually or separately (story telling)
+            </li>
+        </ul>
+
+        <figure class="row align-items-center embed-responsive embed-responsive-1by1">
+            <embed class="col-10 embed-responsive-item" src="./graph-obesity.html"></embed>
+            <figcaption class="col-2">
+                Morbi tincidunt interdum nibh eu pretium. Aliquam lectus eros, tempus quis libero ut, fringilla
+                convallis ex. Quisque euismod turpis at enim sagittis placerat. Praesent eu orci vel nibh volutpat
+                semper. Pellentesque convallis tempus mi in venenatis. In non aliquet ex. Curabitur nec fermentum
+                tortor, non tincidunt libero.
+            </figcaption>
+        </figure>
+
+        <figure class="row align-items-center embed-responsive embed-responsive-1by1">
+            <embed class="col-9 embed-responsive-item" src="./graph-obesity-gym/index.html"></embed>
+            <figcaption class="col-3">
+                Morbi tincidunt interdum nibh eu pretium. Aliquam lectus eros, tempus quis libero ut, fringilla
+                convallis ex. Quisque euismod turpis at enim sagittis placerat. Praesent eu orci vel nibh volutpat
+                semper. Pellentesque convallis tempus mi in venenatis. In non aliquet ex. Curabitur nec fermentum
+                tortor, non tincidunt libero.
+            </figcaption>
+        </figure>
+
+        <figure class="row align-items-center embed-responsive embed-responsive-1by1">
+            <embed class="col-10 embed-responsive-item" src="./graph-happiness.html"></embed>
+            <figcaption class="col-2">
+                Morbi tincidunt interdum nibh eu pretium. Aliquam lectus eros, tempus quis libero ut, fringilla
+                convallis ex. Quisque euismod turpis at enim sagittis placerat. Praesent eu orci vel nibh volutpat
+                semper. Pellentesque convallis tempus mi in venenatis. In non aliquet ex. Curabitur nec fermentum
+                tortor, non tincidunt libero.
+            </figcaption>
+        </figure>
+
+        <figure class="row align-items-center embed-responsive embed-responsive-1by1">
+            <embed class="col-7 embed-responsive-item" src="./graph-happiness-le/index.html"></embed>
+            <figcaption class="col-5">
+                Morbi tincidunt interdum nibh eu pretium. Aliquam lectus eros, tempus quis libero ut, fringilla
+                convallis ex. Quisque euismod turpis at enim sagittis placerat. Praesent eu orci vel nibh volutpat
+                semper. Pellentesque convallis tempus mi in venenatis. In non aliquet ex. Curabitur nec fermentum
+                tortor, non tincidunt libero.
+            </figcaption>
+        </figure>
+
+        <figure class="row align-items-center embed-responsive embed-responsive-1by1">
+            <embed class="col-7 embed-responsive-item" src="./graph-sunshine.html"></embed>
+            <figcaption class="col-5">
+                Morbi tincidunt interdum nibh eu pretium. Aliquam lectus eros, tempus quis libero ut, fringilla
+                convallis ex. Quisque euismod turpis at enim sagittis placerat. Praesent eu orci vel nibh volutpat
+                semper. Pellentesque convallis tempus mi in venenatis. In non aliquet ex. Curabitur nec fermentum
+                tortor, non tincidunt libero.
+            </figcaption>
+        </figure>
+
+        <figure class="row align-items-center embed-responsive embed-responsive-1by1">
+            <embed class="col-5 embed-responsive-item" src="./graph-final.html"></embed>
+            <figcaption class="col-5">
+                Morbi tincidunt interdum nibh eu pretium. Aliquam lectus eros, tempus quis libero ut, fringilla
+                convallis ex. Quisque euismod turpis at enim sagittis placerat. Praesent eu orci vel nibh volutpat
+                semper. Pellentesque convallis tempus mi in venenatis. In non aliquet ex. Curabitur nec fermentum
+                tortor, non tincidunt libero.
+            </figcaption>
+        </figure>
+    </section>
+
+</body>
+
+</html>

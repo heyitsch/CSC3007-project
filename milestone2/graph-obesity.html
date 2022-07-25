@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .bubbleInfo {
+            fill: none;
+            stroke: lightgray;
+            stroke-width: 2px;
+            cursor: help;
+        }
+
+        #tooltip {
+            visibility: hidden;
+            position: absolute;
+
+            background: rgb(85, 85, 85);
+            border-radius: 3px;
+            padding: 7px 13px;
+            color: white;
+        }
+
+        #tooltip.visible {
+            visibility: visible;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="tooltip">tips</div>
+    <div id="viz">
+        <svg></svg>
+    </div>
+    <script>
+        let healthyCsv = "https://gist.githubusercontent.com/kaiongit/b5cb14707348f962bf5677d80f6e4759/raw/340c766a5b7ea92e1a20080e37d2f6677424bf6c/healthy_lifestyle_city_2021.csv";
+
+
+        function charge(d) {
+            return Math.pow(d.radius, 2.0) * 0.01
+        }
+
+        function createNodes(rawData) {
+            const maxSize = d3.max(rawData, d => d.obesity)
+            console.log(maxSize)
+
+            const radiusScale = d3.scaleSqrt()
+                .domain([0, maxSize])
+                .range([0, 80])
+
+            const myNodes = rawData.map(d => ({
+                ...d,
+                radius: radiusScale(d.obesity * 1.05),
+                size: d.obesity,
+                x: Math.random() * 800,
+                y: Math.random() * 700
+            }))
+            return myNodes;
+        }
+
+        function displayChart(selector, rawData) {
+
+            const width = 1000;
+            const height = 1000;
+            const centre = { x: width / 2, y: height / 2 };
+            const forceStrength = 0.1;
+
+            let svg = null;
+            let bubbles = null;
+            let labels = null;
+            let nodes = [];
+            // convert raw data into nodes data
+            nodes = createNodes(rawData);
+
+            var colorScale = d3.scaleSequential()
+            .interpolator(d3.interpolateBlues)
+            .domain([d3.min(rawData, d => d.obesity), d3.max(rawData, d => d.obesity)])
+
+            const simulation = d3.forceSimulation()
+                .force('charge', d3.forceManyBody().strength(charge))
+                // .force('center', d3.forceCenter(centre.x, centre.y))
+                .force('x', d3.forceX().strength(forceStrength).x(centre.x))
+                .force('y', d3.forceY().strength(forceStrength).y(centre.y))
+                .force('collision', d3.forceCollide().radius(d => d.radius + 1));
+            simulation.stop();
+
+            console.log(nodes)
+            let tooltip = d3.select("#tooltip");
+
+            // create svg element inside provided selector
+            svg = d3.select(selector)
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height)
+
+            // bind nodes data to circle elements
+            const elements = svg.selectAll('.bubble')
+                .data(nodes, d => d.city)
+                .enter()
+                .append('g')
+
+            bubbles = elements
+                .append('circle')
+                .classed('bubble', true)
+                .attr('r', d => d.radius)
+                .attr('fill', function(d) {
+                    return colorScale(d.obesity)
+                })
+                .on("mouseover", function (e, d) {
+                    tooltip.classed("visible", true);
+
+                    d3.select(event.currentTarget)
+                        .classed("selected", true);
+                })
+                .on("mouseout", function () {
+                    tooltip.classed("visible", false);
+
+                    d3.select(event.currentTarget)
+                        .classed("selected", false);
+                })
+                .on("mousemove", function (e, d) {
+                    tooltip
+                        .style("top", (e.pageY - 35) + "px")
+                        .style("left", (e.pageX + 10) + "px")
+                        .html(`Country Name : <strong>${d.city} </strong></br>
+                            Obesity rate: ${d.obesity} </br>
+                            Ranking: ${d.index + 1}/44`)
+                })
+                .attr("stroke", "grey")
+
+            // labels
+            labels = elements
+                .append('text')
+                .attr('dy', '.3em')
+                .style('text-anchor', 'middle')
+                .style('font-size', 14)
+                .text((d) => d.city)
+
+            // set simulation's nodes to our newly created nodes array
+            // simulation starts running automatically once nodes are set
+            simulation.nodes(nodes)
+                .on('tick', ticked)
+                .restart();
+
+            function ticked() {
+                bubbles
+                    .attr('cx', d => d.x)
+                    .attr('cy', d => d.y)
+
+                labels
+                    .attr('x', d => d.x)
+                    .attr('y', d => d.y)
+            }
+            return chart;
+        }
+
+
+
+        //Get country, obesity 
+        //Sort by Obesity percentage
+        let obesityData = []
+        d3.csv(healthyCsv).then(data => {
+            console.log(data)
+            for (var key in data) {
+                var o = {}
+                if (data[key]['City'] && data[key]['Obesity levels(Country)'] !== 'undefined') {
+                    o.city = data[key]['City']
+                    o.obesity = parseFloat(data[key]['Obesity levels(Country)'])
+                    obesityData.push(o)
+                }
+            }
+            let obesityDataSorted = obesityData.sort(function (a, b) { return a["obesity"] - b["obesity"] })
+            console.log(obesityDataSorted)
+            displayChart('#viz', obesityDataSorted)
+
+            
+        })
+    </script>
+
+</body>
+
+</html>

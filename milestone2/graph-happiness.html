@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Happiness levels Example</title>
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v6.js"></script>
+    <style>
+      /* svg {
+        border: 1px solid #ddd;
+      } */
+      .svg-container {
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        padding-bottom: 70%;
+        vertical-align: top;
+        overflow: hidden;
+      }
+      .svg-content{
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="barchart" class="svg-container"></div>
+    <script>
+
+      // set the dimensions and margins of the graph
+      const margin = {top: 50, right: 30, bottom: 20, left: 40},
+          width = 800 - margin.left - margin.right,
+          height = 500 - margin.top - margin.bottom;
+
+      // append the svg object to the body of the page
+      const svg = d3.select("#barchart")
+        .append("svg")
+          // .attr("width", width + margin.left + margin.right)
+          // .attr("height", height + margin.top + margin.bottom)
+          .attr("preserveAspectRatio", "xMinYMin meet")
+          .attr("viewBox", "0 0 800 600")
+          .classed("svg-content", true)
+        .append("g")
+          .attr("transform", `translate(${margin.left},${margin.top})`);
+          
+      const api_call = 'https://gist.githubusercontent.com/kaiongit/b5cb14707348f962bf5677d80f6e4759/raw/340c766a5b7ea92e1a20080e37d2f6677424bf6c/healthy_lifestyle_city_2021.csv'
+
+      d3.csv(api_call).then( function(data) {
+        data.sort(function (a, b) {
+          return b["Happiness levels(Country)"] - a["Happiness levels(Country)"]
+        });
+        
+      // X axis
+      const x = d3.scaleBand()
+        .range([ 0, width ])
+        .domain(data.map(d => d.City))
+        .padding(0.2);
+      svg.append("g")
+        .attr("transform", `translate(0, ${height})`)
+        .call(d3.axisBottom(x))
+        .selectAll("text")
+          .attr("transform", "translate(-10,0)rotate(-45)")
+          .style("text-anchor", "end")
+
+      // Add Y axis
+      const y = d3.scaleLinear()
+        .domain([0, 8])
+        .range([ height, 0]);
+      svg.append("g")
+        .call(d3.axisLeft(y));
+
+      // create tooltip element reference from - https://perials.github.io/responsive-bar-chart-with-d3/
+      const tooltip = d3.select("body")
+        .append("div")
+        .attr("class","d3-tooltip")
+        .style("position", "absolute")
+        .style("z-index", "10")
+        .style("visibility", "hidden")
+        .style("padding", "15px")
+        .style("background", "rgba(0,0,0,0.6)")
+        .style("border-radius", "5px")
+        .style("color", "#fff");
+
+      // Bars
+      svg.selectAll("mybar")
+        .data(data)
+        .enter()
+        .append("rect")
+          .attr("x", (d) => x(d.City))
+          .attr("y", (d) => y(d["Happiness levels(Country)"]))
+          .attr("width", x.bandwidth())
+          .attr("height", (d) => height - y(d["Happiness levels(Country)"]))
+          .attr("fill", "steelblue")
+
+          // Add mouseover tooltip
+          .on("mouseover", function(event, d) {
+          tooltip.html("No: " + d["Happiness levels(Country)"]).style("visibility", "visible");
+        })
+          .on("mousemove", function(event){
+            tooltip
+              .style("top", (event.pageY-10)+"px")
+              .style("left",(event.pageX+10)+"px");
+          })
+          .on("mouseout", function() {
+            tooltip.html(``).style("visibility", "hidden");
+          });
+
+      // Add title
+      svg.append("text")
+          .attr("x", 400)
+          .attr("y", -10)
+          .attr("text-anchor", "middle")
+          .attr("font-size", "24px")
+          .text("Happiness levels (Country) in 2021")
+          
+      });
+
+    </script>
+  </body>
+</html>

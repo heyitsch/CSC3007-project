@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vega-Lite Chart</title>
+    <meta charset="utf-8" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.21.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.2"></script>
+
+
+    <style media="screen">
+      /* Add space between Vega-Embed links  */
+      .vega-actions a {
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Obesity levels vs. Cost of a monthly gym membership (£)</h1>
+    <!-- Container for the visualization -->
+    <div id="vis"></div>
+
+    <script>
+      // Assign the specification to a local variable vlSpec.
+      var vlSpec = {
+         $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+         description: "Obesity levels vs. Cost of a monthly gym membership (£)",
+         width: 800,
+         height: 700,
+         padding: 5,
+         autosize: "pad",
+         data: {"url": "data/healthy_lifestyle_city_2021.csv"},
+         title: {
+          "text": "Obesity levels vs. Cost of a monthly gym membership (£)",
+          "fontSize": 20
+        },
+        //  config: {"view": {"continuousWidth": 400, "continuousHeight": 300}},
+        mark: {
+          "type": "text",
+          "size": 18,
+          // "point": {
+          //   "filled": "point",
+          // },
+          "tooltip": true,
+        },
+        // mark: "text",
+        encoding: {
+          "x": { "field": "Obesity levels(Country)", "type": "quantitative", "title": "Percentage of Obesity levels(Country)"},
+          "y": {"field": "Cost of a monthly gym membership(City)", "type": "quantitative", "title": "Cost of a monthly gym membership (£)" },
+          "color": {"field": "City", "type": "nominal"},
+          "text": {"field": "City", "type": "nominal"}
+          }
+        }
+
+      // Embed the visualization in the container with id `vis`
+      vegaEmbed('#vis', vlSpec);
+    </script>
+  </body>
+</html>
+

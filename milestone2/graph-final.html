@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 1em;
+            }
+
+            ul {
+                list-style-type: none;
+                padding: 0;
+                font-size: 1em;
+                width: fit-content;
+                left: 50%;
+                position: absolute;
+                transform: translate(-50%, -50%);
+                top: 50%;
+            }
+
+            li {
+                padding-bottom: .3em;
+            }
+
+            li .rank::before {
+                content: "#";
+            }
+
+            li .rank {
+                padding-right: 1em;
+                min-width: 2em;
+                text-align: right;
+                display: inline-block;
+            }
+
+            li.\31 {
+                font-weight: bold;
+                padding-bottom: .5em;
+            }
+
+            ul::after {
+                content: "...";
+                padding: 1em;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <section></section>
+
+        <script>
+
+            /**
+             * @param {Array<Object>} data
+             * @returns {Array}
+             */
+            function parseData (data) {
+                data = data.filter((d) => !(isNaN(Number(d["Rank"]))));
+                data = data.filter((d) => d["Rank"] <= 10);
+                data = data.sort((a, b) => a["Rank"] - b["Rank"]);
+                
+                return data;
+            }
+
+            /**
+             * @param {Array<number>} data
+             * @returns {Object<string, number>}
+             */
+            function summariseData (data) {
+                let sum = data.reduce((a, b) => a + b, 0);
+                let avg = (sum / data.length) || 0;
+                let min = Math.min(...data);
+                let max = Math.max(...data);
+
+                return {
+                    sum: sum,
+                    avg: avg,
+                    min: min,
+                    max: max
+                };
+            }
+
+            function renderHtml (data) {
+                let rank = data["Rank"];
+                let city = data["City"];
+
+                return `<span class="rank">${rank}</span><span class="city">${city}</span>`;
+            }
+
+            function drawGraph (data) {
+
+                const ul = d3.select("section").append("ul");
+
+                let ranks = ul.selectAll("li")
+                    .data(data)
+                    .enter()
+                    .append("li")
+                        .attr("class", d => d["Rank"])
+                        .html(d => renderHtml(d));
+            }
+
+            let healthyCsv = "https://gist.githubusercontent.com/kaiongit/b5cb14707348f962bf5677d80f6e4759/raw/340c766a5b7ea92e1a20080e37d2f6677424bf6c/healthy_lifestyle_city_2021.csv";
+
+            d3.csv(healthyCsv).then(function (data) {
+                data = parseData(data);
+                console.log(data);
+                drawGraph(data);
+            });
+
+        </script>
+    </body>
+</html>
