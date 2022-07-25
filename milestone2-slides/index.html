@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Milestone 2</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+		<style>
+			html {
+				font-size: 24px;
+			}
+
+			.slides section {
+				width: 100%;
+			}
+
+			.slides section > div {
+				display: inline-block;
+				width: 49%;
+				vertical-align: middle;
+			}
+
+			.title {
+				font-size: 1rem;
+			}
+
+			.data-title, .task-title, .idiom-title {
+				font-size: .8rem;
+				margin-bottom: 1px !important;
+			}
+
+			.data-text, .task-text, .idiom-text {
+				font-size: .6rem;
+				margin-top: 1px !important;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+			<!-- Obesity chart -->
+			<section>
+				<div class="figure">
+					<img src="ss-obesity.jpg"> 
+				</div>
+				<div class="text">
+					<p class="title">Obesity</p>
+					<p class="data-title">Data:</p>
+					<p class="data-text">
+						The data used is the obesity rate of each city in percentage value. <br>
+						The data attribute type is Quantitative and ratio data, arithmetic can be 
+						performed to calculate and compare the difference in obesity level for the 
+						different cities. The data has a sequential ordering and is used to present 
+						the magnitude.
+					</p>
+
+					<p class="task-title">Task:</p>
+					<p class="task-text">
+						The visualisation aims to present obesity levels. It is mainly exploratory 
+						analysis and allows users to discover which are the cities that have either 
+						high/low obesity levels.
+					</p>
+
+					<p class="idiom-title">Idiom:</p>
+					<p class="idiom-text">
+						Using a Bubble chart visual encoding, we encoded the obesity levels for each 
+						city. We also leverage colour as a means to convey quantitative difference using 
+						the intensity. The obesity percentage for each city is also used as a size scaling 
+						factor. Cities with higher obesity will appear to have a bigger area to the viewer. 
+					</p>
+				</div>
+			</section>
+
+			<!-- Obesity x Gym Cost -->
+			<section id="chart02_obesity_gymcost">
+				<div class="figure">
+					<img src="ss-obesity-gym.jpg"> 
+				</div>
+				<div class="text">
+					<p class="title">Obesity x Gym cost</p>
+					<p class="data-title">Data:</p>
+					<p class="data-text">
+						The data used are obesity levels of each of each city in percentage value and cost of monthly gym membership in euro currency. 
+						The data attribute types are qualitative for both the data.
+					</p>
+
+					<p class="task-title">Task:</p>
+					<p class="task-text">
+						The visualisation aims to present the correlation between the obesity level and gym membership cost. 
+						Exploratory analysis approach is used to present the data.
+					</p>
+
+					<p class="idiom-title">Idiom:</p>
+					<p class="idiom-text">
+						Using a scatter plot, we encoded obesity level and gym cost for each city. 
+						We encode each city with colour to differentiate the cities. The obesity level and gym cost is also encoded as scales on the y and x axis. 
+					</p>
+				</div>
+			</section>
+
+			<!-- Happiness Level -->
+			<section id="chart03_happiness">
+				<div class="figure">
+					<img src="ss-happiness.jpg"> 
+				</div>
+				<div class="text">
+					<p class="title">Happiness Level</p>
+					<p class="data-title">Data:</p>
+					<p class="data-text">
+						The data is happiness levels ranked based on score value. 
+						The data attribute type is quantitative 
+					</p>
+
+					<p class="task-title">Task:</p>
+					<p class="task-text">
+						The visualisation aims to present the city's happiness level by ranking it.
+					</p>
+
+					<p class="idiom-title">Idiom:</p>
+					<p class="idiom-text">
+						Using a bar chart to display the relationship between the city happiness level and and city.
+						The length of each bar represents the happiness level of each city
+					</p>
+				</div>
+			</section>   
+
+			<!-- Happiness Level x Life Expectancy -->
+			<section id="chart04_happiness_lifeExpectancy">
+				<div class="figure">
+					<img src="ss-happiness-le.jpg"> 
+				</div>
+				<div class="text">
+					<p class="title">Happiness Level x Life Expectancy</p>
+					<p class="data-title">Data:</p>
+					<p class="data-text">
+						The data used are both quantitative, and the data scale for happiness level and life expectancy are ratio and interval data, respectively. 
+					</p>
+
+					<p class="task-title">Task:</p>
+					<p class="task-text">
+						The objective is to present and analyse correlation between the happiness level and life expectancy of the different cities. 
+					</p>
+
+					<p class="idiom-title">Idiom:</p>
+					<p class="idiom-text">
+						Visual encoding used is a scatterplot with a regression line, which allows us to derive any patterns/correlation.
+						In the graph, the regression line shows that there exists a strong relationship between the two different attributes.
+					</p>
+				</div>
+			</section>       
+
+
+			<!-- Sushine -->
+			<section id="chart05_sunshine_hours">
+				<div class="figure">
+					<img src="ss-sunshine.jpg"> 
+				</div>
+				<div class="text">
+					<p class="title">Sunshine hours</p>
+					<p class="data-title">Data:</p>
+					<p class="data-text">
+						The data is amount of sunshine in hours.
+						The data attribute type is quantitative. 
+						The average amount of sunshine hours is calculated as the mean of all data points
+					</p>
+
+					<p class="task-title">Task:</p>
+					<p class="task-text">
+						The visualisation aims to show the rankings of cities by sunshine hours and to show which cities have less than average sunshine hours
+					</p>
+
+					<p class="idiom-title">Idiom:</p>
+					<p class="idiom-text">
+						Using a Radial Bar chart (which kind of looks like a sun), we encoded the amount of sunshine hours for each city. 
+						The length of each bar represents the total amount of sunshine hours - longer is more.
+						The average amount of sunshine hours is a position on a common scale (although it is the only one on the scale)            
+					</p>
+				</div>
+			</section>    
+
+
+			<!-- Technologies -->
+			<section id="technologies_used">
+				<p class="title">Technologies used</p>
+				<p class="tech1-title"><strong>D3.js</strong></p>
+				<p class="tech1-text">
+					Graphs built: Sunshine, Obesity Level, Happiness level
+				</p>
+				<p class="tech2-title"><strong>Vega & Vega-lite</strong></p>
+				<p class="tech2-text">
+					Graphs built: Happiness Level x Life Expectancy
+				</p>
+			</section> 
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
